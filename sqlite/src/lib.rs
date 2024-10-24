@@ -79,7 +79,10 @@ pub fn load_data_from_csv(
         let day_of_week: i32 = record[3].parse()?;
         let births: i32 = record[4].parse()?;
 
-        conn.execute(&insert_query, params![year, month, date_of_month, day_of_week, births])?;
+        conn.execute(
+            &insert_query,
+            params![year, month, date_of_month, day_of_week, births],
+        )?;
     }
 
     println!(

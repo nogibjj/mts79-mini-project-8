@@ -38,7 +38,7 @@ enum Commands {
 fn main() -> Result<()> {
     // Parse the CLI arguments
     let args = Cli::parse();
-    
+
     // Establish a connection to the SQLite database
     let conn = Connection::open("births_database.db")?;
 
