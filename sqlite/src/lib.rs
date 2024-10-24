@@ -1,17 +1,17 @@
-use csv::ReaderBuilder; // for loading from csv
+// Import necessary crates for CSV handling and SQLite database interaction
+use csv::ReaderBuilder;
 use rusqlite::{params, Connection, Result};
 use std::error::Error;
-use std::fs::File; // for loading csv and handling errors
+use std::fs::File;
 
-// Create a table with the births dataset schema
+// Function to create a table with the specified schema for births dataset
 pub fn create_table(conn: &Connection, table_name: &str) -> Result<()> {
     let create_query = format!(
         "CREATE TABLE IF NOT EXISTS {} (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
             year INTEGER NOT NULL,
             month INTEGER NOT NULL,
             date_of_month INTEGER NOT NULL,
-            day_of_week TEXT NOT NULL,
+            day_of_week INTEGER NOT NULL,
             births INTEGER NOT NULL
         )",
         table_name
@@ -27,11 +27,12 @@ pub fn query_exec(conn: &Connection, query_string: &str) -> Result<()> {
 
     // Map the rows to the columns in the births table
     let rows = stmt.query_map([], |row| {
-        let year: i64 = row.get(0)?;
-        let month: i64 = row.get(1)?;
-        let date_of_month: i64 = row.get(2)?;
-        let day_of_week: String = row.get(3)?;
-        let births: i64 = row.get(4)?;
+        // Use named columns instead of index-based retrieval
+        let year: i64 = row.get("year")?;
+        let month: i64 = row.get("month")?;
+        let date_of_month: i64 = row.get("date_of_month")?; // Fixed to correctly reference column
+        let day_of_week: i64 = row.get("day_of_week")?;
+        let births: i64 = row.get("births")?;
         Ok((year, month, date_of_month, day_of_week, births))
     })?;
 
@@ -47,7 +48,8 @@ pub fn query_exec(conn: &Connection, query_string: &str) -> Result<()> {
     Ok(())
 }
 
-// Drop the table
+
+// Function to drop a table by its name
 pub fn drop_table(conn: &Connection, table_name: &str) -> Result<()> {
     let drop_query = format!("DROP TABLE IF EXISTS {}", table_name);
     conn.execute(&drop_query, [])?;
@@ -55,7 +57,7 @@ pub fn drop_table(conn: &Connection, table_name: &str) -> Result<()> {
     Ok(())
 }
 
-// Load data from a CSV file into the births table
+// Function to load data from a CSV file into the births table
 pub fn load_data_from_csv(
     conn: &Connection,
     table_name: &str,
@@ -69,13 +71,13 @@ pub fn load_data_from_csv(
         table_name
     );
 
-    // Loop that expects the specific schema for births
+    // Loop through each record in the CSV file and insert it into the table
     for result in rdr.records() {
         let record = result?;
         let year: i64 = record[0].parse().expect("Failed to parse year");
         let month: i64 = record[1].parse().expect("Failed to parse month");
         let date_of_month: i64 = record[2].parse().expect("Failed to parse date_of_month");
-        let day_of_week: &str = &record[3];
+        let day_of_week: i64 = record[3].parse().expect("Failed to parse day_of_week");
         let births: i64 = record[4].parse().expect("Failed to parse births");
 
         conn.execute(&insert_query, params![year, month, date_of_month, day_of_week, births])?;
@@ -88,7 +90,7 @@ pub fn load_data_from_csv(
     Ok(())
 }
 
-// Update records in the births table
+// Function to update records in the table using a set clause and condition
 pub fn update_table(
     conn: &Connection,
     table_name: &str,
