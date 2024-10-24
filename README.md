@@ -1,13 +1,13 @@
-# Births CRUD CLI Tool
+# SQLite Command Line Tool with Rust
 [![CICD](https://github.com/nogibjj/mona-saeed-sqlite-rust/actions/workflows/CI.yml/badge.svg)](https://github.com/nogibjj/mona-saeed-sqlite-rust/actions/workflows/CI.yml)
 
 ## Overview
 
-The **Births CRUD CLI Tool** is a command line utility designed to perform CRUD (Create, Read, Update, Delete) operations on the `births.csv` file included in the data folder. This tool allows users to manage the dataset effectively through various command line commands.
+The sqlite is a command line utility designed to perform CRUD (Create, Read, Update, Delete) operations on the `births.csv` file included in the data folder. This tool allows users to manage the dataset effectively through various command line commands.
 
 ## Features
 
-- **Create**: Create a new table in the SQLite database based on the `births.csv` schema.
+- **Create**: Create a new table in the `births_database.db` SQLite database based on the `births.csv` schema.
 - **query**: Execute custom SQL queries to retrieve data from the database.
 - **Delete**: Drop tables or delete records from the database.
 - **Load Data**: Load data from the `births.csv` file into the SQLite database.
@@ -24,7 +24,9 @@ The **Births CRUD CLI Tool** is a command line utility designed to perform CRUD 
    git clone https://github.com/nogibjj/mona-saeed-sqlite-rust
    cd mona-saeed-sqlite-rust
    cd sqlite
-![alt text](2024-10-23.png)
+   ```
+run `sqlite -h` to see available options
+![alt text](<2024-10-24 (1).png>)
 
 ## Example Usage
 
