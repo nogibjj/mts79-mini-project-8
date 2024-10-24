@@ -7,8 +7,7 @@ The **Births CRUD CLI Tool** is a command line utility designed to perform CRUD 
 ## Features
 
 - **Create**: Create a new table in the SQLite database based on the `births.csv` schema.
-- **Read**: Execute custom SQL queries to retrieve data from the database.
-- **Update**: Update records in the database through SQL commands.
+- **query**: Execute custom SQL queries to retrieve data from the database.
 - **Delete**: Drop tables or delete records from the database.
 - **Load Data**: Load data from the `births.csv` file into the SQLite database.
 
@@ -28,4 +27,4 @@ The **Births CRUD CLI Tool** is a command line utility designed to perform CRUD 
 
 ## Example Usage
 
-![alt text](<2024-10-23 (3).png>)
+![alt text](2024-10-24.png)
