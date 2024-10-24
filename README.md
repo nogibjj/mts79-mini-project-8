@@ -1,4 +1,5 @@
 # Births CRUD CLI Tool
+[![CICD](https://github.com/nogibjj/mona-saeed-sqlite-rust/actions/workflows/CI.yml/badge.svg)](https://github.com/nogibjj/mona-saeed-sqlite-rust/actions/workflows/CI.yml)
 
 ## Overview
 
