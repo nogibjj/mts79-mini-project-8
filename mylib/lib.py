@@ -62,27 +62,3 @@ def load_data_from_csv(conn, table_name, file_path):
         print(f"Data loaded successfully from '{file_path}' into table '{table_name}'.")
     except Exception as e:
         print(f"Error loading data from CSV: {e}")
-
-# Usage example
-if __name__ == "__main__":
-    # Connect to the database (creates it if it doesn't exist)
-    conn = sqlite3.connect('births_data.db')
-    
-    # Define table name and file path
-    table_name = "births"
-    file_path = "births.csv"  # Replace with the actual CSV file path
-    
-    # Create the table
-    create_table(conn, table_name)
-    
-    # Load data from CSV
-    load_data_from_csv(conn, table_name, file_path)
-    
-    # Query data
-    query_exec(conn, f"SELECT * FROM {table_name}")
-    
-    # Drop the table (if needed)
-    drop_table(conn, table_name)
-    
-    # Close the connection
-    conn.close()

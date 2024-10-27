@@ -1,6 +1,6 @@
 import argparse
 import sqlite3
-from mylib.lib import create_table, drop_table, load_data_from_csv, query_exec  # Importing the functions from the earlier code
+from lib import create_table, drop_table, load_data_from_csv, query_exec
 
 def main():
     # Set up command-line argument parsing
@@ -28,7 +28,7 @@ def main():
     args = parser.parse_args()
 
     # Establish a connection to the SQLite database
-    conn = sqlite3.connect("births_database.db")
+    conn = sqlite3.connect("births_databasepy.db")
 
     # Execute the relevant function based on the command
     if args.command in ["create", "c"]:
