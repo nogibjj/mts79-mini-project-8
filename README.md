@@ -1,5 +1,7 @@
-# SQLite Command Line Tool with Rust
-[![CICD](https://github.com/nogibjj/mona-saeed-sqlite-rust/actions/workflows/CI.yml/badge.svg)](https://github.com/nogibjj/mona-saeed-sqlite-rust/actions/workflows/CI.yml)
+# Python vs. Rust
+[![Python CICD](https://github.com/nogibjj/mts79-mini-project-8/actions/workflows/ci_python.yml/badge.svg)](https://github.com/nogibjj/mts79-mini-project-8/actions/workflows/ci_python.yml)
+
+[![Rust CICD](https://github.com/nogibjj/mts79-mini-project-8/actions/workflows/CI.yml/badge.svg)](https://github.com/nogibjj/mts79-mini-project-8/actions/workflows/CI.yml)
 
 ## Overview
 
