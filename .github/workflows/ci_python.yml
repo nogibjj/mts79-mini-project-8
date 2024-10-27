@@ -1,4 +1,4 @@
-name: Python Test with Github Actions 
+name: CICD
 on:
   push:
     branches: [ "main" ]
@@ -9,23 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Python 3.12.7
-        uses: actions/setup-python@v1
-        with: 
-          python-version: 3.12.7
-          
-      - name: install packages and dependencies
-        run: |
-          make install
-      - name: lint with pylint
-        run: |
-          make lint
-      - name: test with pytest
-        run: |
-          make test
-      - name: format with black 
-        run: |
-          make format
+      - name: install packages
+        run: make install
+      - name: lint
+        run: make lint
+      - name: extract 
+        run: make extract 
+      - name: transform_load
+        run: make transform_load 
+      - name: query
+        run: make query
+      - name: test
+        run: make test
+      - name: format
+        run: make format
